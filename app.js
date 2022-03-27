@@ -7,6 +7,7 @@ var indexRouter = require('./routes/index');
 var digiRouter = require('./routes/digi');
 
 var app = express();
+app.use(express.json({ limit: 10000 }));
 
 app.use(logger('dev'));
 app.use(express.json());
