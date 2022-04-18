@@ -18,6 +18,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/tgdigi', digiRouter);
-app.use('/wallet', digiRouter);  
+app.use('/wallet', walletRouter);
 
 module.exports = app;
