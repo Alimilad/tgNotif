@@ -32,6 +32,8 @@ router.post('/', upload.single('file'), (req, res) => {
             console.error(err);
             return;
         }
+    });
+
         res.status(200).send('File uploaded successfully!');
 
     });
