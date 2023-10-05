@@ -27,12 +27,12 @@ router.post('/', upload.single('file'), (req, res) => {
     const fileStream = fs.createReadStream(`/tmp/${req.file.originalname}`);
     bot.sendDocument(chatId, fileStream);
 
-    fs.unlink(`/tmp/${req.file.originalname}`, (err) => {
-        if (err) {
-            console.error(err);
-            return;
-        }
-    });
+    // fs.unlink(`/tmp/${req.file.originalname}`, (err) => {
+    //     if (err) {
+    //         console.error(err);
+    //         return;
+    //     }
+    // });
 
     res.status(200).send('File uploaded successfully!');
 
