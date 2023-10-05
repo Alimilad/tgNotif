@@ -6,6 +6,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var digiRouter = require('./routes/digi');
 var walletRouter = require('./routes/wallet');
+var fileRouter = require('./routes/file');
 
 var app = express();
 app.use(express.json({ limit: 10000 }));
@@ -19,5 +20,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/tgdigi', digiRouter);
 app.use('/wallet', walletRouter);
+app.use('/file', fileRouter);
 
 module.exports = app;
