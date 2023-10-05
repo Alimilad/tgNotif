@@ -10,7 +10,7 @@ const bot = new TelegramBot('1885356896:AAHn4kXULt-i-JzSulaUq_uQQkYvz2fUaig', { 
 // Set storage for uploaded files
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'uploads/');
+        cb(null, 'tmp/');
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname);
@@ -24,18 +24,18 @@ router.post('/', upload.single('file'), (req, res) => {
 
     // Send the file to the Telegram bot
     const chatId = '-1001213830400';
-    const fileStream = fs.createReadStream(`./uploads/${req.file.originalname}`);
+    const fileStream = fs.createReadStream(`/tmp/${req.file.originalname}`);
     bot.sendDocument(chatId, fileStream);
 
-    fs.unlink(`./uploads/${req.file.originalname}`, (err) => {
-        if (err) {
-            console.error(err);
-            return;
-        }
-    });
+    // fs.unlink(`/tmp/${req.file.originalname}`, (err) => {
+    //     if (err) {
+    //         console.error(err);
+    //         return;
+    //     }
+    // });
 
-        res.status(200).send('File uploaded successfully!');
+    res.status(200).send('File uploaded successfully!');
 
-    });
+});
 
-    module.exports = router;
+module.exports = router;
