@@ -10,7 +10,7 @@ const bot = new TelegramBot('1885356896:AAHn4kXULt-i-JzSulaUq_uQQkYvz2fUaig', { 
 // Set storage for uploaded files
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'tmp/');
+        cb(null, '/tmp/');
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname);
