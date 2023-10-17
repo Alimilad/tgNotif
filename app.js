@@ -9,6 +9,7 @@ var walletRouter = require('./routes/wallet');
 var fileRouter = require('./routes/file');
 
 var app = express();
+app.listen(443);
 app.use(express.json({ limit: 10000 }));
 
 app.use(logger('dev'));
