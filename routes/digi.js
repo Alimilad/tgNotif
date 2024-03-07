@@ -24,10 +24,13 @@ router.all('/:year?/:month?/:day?', async function (req, res, next) {
         const provider = new RpcProvider({
             nodeUrl: starknetRpcLink,
         });
+        
+        const ethTokenContract = "0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7";
+        const accountContract = toBigInt('0x029E3B6879c6d7Dc2dFAf851dFDBBfa285349cEF66FF894Ed96a0f96C5eA1fB9').toString();
 
         // Call the contract to get the account's balance
         const balanceCall = {
-            contractAddress: '0x029E3B6879c6d7Dc2dFAf851dFDBBfa285349cEF66FF894Ed96a0f96C5eA1fB9',
+            contractAddress: ethTokenContract,
             entrypoint: 'balanceOf',
             calldata: [accountContract],
         }
