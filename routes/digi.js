@@ -2,7 +2,7 @@ var express = require('express');
 var digi = require('../services/digi');
 var router = express.Router();
 const { Web3 } = require('web3');
-import { RpcProvider, Call, validateAndParseAddress } from 'starknet';
+const { RpcProvider } = require('starknet');
 
 const ethereumRpcLink = 'https://eth1.lava.build/lava-referer-caf453a2-994d-44e4-8807-2fb223b96b34/';
 const starknetRpcLink = 'https://rpc.starknet.lava.build/lava-referer-caf453a2-994d-44e4-8807-2fb223b96b34/';
