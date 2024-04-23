@@ -23,7 +23,9 @@ const upload = multer({ storage: storage });
 router.post('/', upload.single('file'), (req, res) => {
 
     // Send the file to the Telegram bot
-    const chatId = '-1001213830400';
+    var chatId = "-1001213830400";
+    
+    if (req.body.ChatId != null) chatId = req.body.ChatId;
     const fileStream = fs.createReadStream(`/tmp/${req.file.originalname}`);
     bot.sendDocument(chatId, fileStream);
 
