@@ -5,8 +5,8 @@ const axios = require('axios')
 
 router.post('/', async function (req, res, next) {
   try {
-    const seller_id = req.body.variant.seller_id;
-    var chat_id;
+    const seller_id = req.body[0].variant.seller_id;
+    var chat_id = 1002005573955;
     switch (seller_id) {
       case 1169158:
         chat_id= -1002005573955;
