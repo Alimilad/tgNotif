@@ -24,7 +24,7 @@ router.post("/", async function (req, res, next) {
       SellerStock: `${body1.variant.stock.in_seller_warehouse}`,
       Quantity: body1.quantity,
       SellingPrice: body1.selling_price,
-      CreatedAt: moment(body1.created_at).format()
+      CreatedAt: moment(body1.created_at).format('YYYY-M-D HH:mm:ss')
     };
 
     const url = `https://api.telegram.org/bot1885356896:AAHn4kXULt-i-JzSulaUq_uQQkYvz2fUaig/sendMessage?chat_id=${chat_id}&text=${JSON.stringify(
