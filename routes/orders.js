@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 const axios = require("axios");
 var moment = require('jalali-moment');
-moment().locale('fa').format();
+moment.locale('fa', { useGregorianParser: true });  
 
 router.post("/", async function (req, res, next) {
   try {
@@ -28,13 +28,13 @@ router.post("/", async function (req, res, next) {
     };
 
     const url = `https://api.telegram.org/bot1885356896:AAHn4kXULt-i-JzSulaUq_uQQkYvz2fUaig/sendMessage?chat_id=${chat_id}&text=${JSON.stringify(
-      notif
+      notif, null, "  "
     )}`;
 
     await axios.get(encodeURI(url));
   } catch (error) {
     const url = `https://api.telegram.org/bot1885356896:AAHn4kXULt-i-JzSulaUq_uQQkYvz2fUaig/sendMessage?chat_id=-1002100122443&text=${JSON.stringify(
-      req.body
+      req.body, null, "  "
     )}`;
     await axios.get(encodeURI(url));
   }
