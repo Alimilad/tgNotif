@@ -22,9 +22,12 @@ router.post("/", async function (req, res, next) {
       Title: `${body1.variant.title}`,
       DigikalaStock: `${body1.variant.stock.in_the_way + body1.variant.stock.in_digikala_warehouse}`,
       SellerStock: `${body1.variant.stock.in_seller_warehouse}`,
+      ReservedStocks: `${body1.variant.stock.reserved_stocks.seller + body1.variant.stock.reserved_stocks.digikala}`,
       Quantity: body1.quantity,
       SellingPrice: body1.selling_price,
-      CreatedAt: moment(body1.created_at).format('YYYY-M-D HH:mm:ss')
+      CreatedAt: moment(body1.created_at).format('YYYY-M-D HH:mm:ss'),
+      cartClosedAt: moment(body1.cart_closed_at).format('YYYY-M-D HH:mm:ss'),
+      CommitmentDate: moment(body1.commitment_date).format('YYYY-M-D HH:mm:ss'),
     };
 
     const url = `https://api.telegram.org/bot1885356896:AAHn4kXULt-i-JzSulaUq_uQQkYvz2fUaig/sendMessage?chat_id=${chat_id}&text=${JSON.stringify(
