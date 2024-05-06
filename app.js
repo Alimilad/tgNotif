@@ -7,6 +7,7 @@ var indexRouter = require('./routes/index');
 var digiRouter = require('./routes/digi');
 var walletRouter = require('./routes/wallet');
 var fileRouter = require('./routes/file');
+var ordersRouter = require('./routes/orders');
 
 var app = express();
 app.listen(443);
@@ -26,5 +27,6 @@ app.use('/', indexRouter);
 app.use('/tgdigi', digiRouter);
 app.use('/wallet', walletRouter);
 app.use('/file', fileRouter);
+app.use('/orders', ordersRouter);
 
 module.exports = app;
