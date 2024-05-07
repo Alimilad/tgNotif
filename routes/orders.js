@@ -12,6 +12,8 @@ router.post("/", async function (req, res, next) {
       case 1169158:
         chat_id = -1002005573955;
         break;
+      case 798684:
+        chat_id = -100209773643;
       default:
         chat_id = -1002005573955;
         break;
