@@ -14,6 +14,7 @@ router.post("/", async function (req, res, next) {
         break;
       case 798684:
         chat_id = -100209773643;
+        break;
       default:
         chat_id = -1002005573955;
         break;
@@ -22,6 +23,7 @@ router.post("/", async function (req, res, next) {
     const notif = {
       Link: `https://www.digikala.com/product/dkp-${body1.variant.product.id}`,
       Title: `${body1.variant.title}`,
+      DKPC: body1.variant.id,
       DigikalaStock: `${body1.variant.stock.in_the_way + body1.variant.stock.in_digikala_warehouse}`,
       SellerStock: `${body1.variant.stock.in_seller_warehouse}`,
       ReservedStocks: `${body1.variant.stock.reserved_stocks.seller + body1.variant.stock.reserved_stocks.digikala}`,
