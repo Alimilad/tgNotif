@@ -19,29 +19,38 @@ router.post("/", async function (req, res, next) {
         chat_id = -1002005573955;
         break;
     }
-    var body1= req.body[0];
-    const notif = {
-      Link: `https://www.digikala.com/product/dkp-${body1.variant.product.id}`,
-      Title: `${body1.variant.title}`,
-      DKPC: body1.variant.id,
-      DigikalaStock: `${body1.variant.stock.in_the_way + body1.variant.stock.in_digikala_warehouse}`,
-      SellerStock: `${body1.variant.stock.in_seller_warehouse}`,
-      ReservedStocks: `${body1.variant.stock.reserved_stocks.seller + body1.variant.stock.reserved_stocks.digikala}`,
-      Quantity: body1.quantity,
-      SellingPrice: body1.selling_price,
-      CreatedAt: moment(body1.created_at).format('YYYY-M-D HH:mm:ss'),
-      cartClosedAt: moment(body1.cart_closed_at).format('YYYY-M-D HH:mm:ss'),
-      CommitmentDate: moment(body1.commitment_date).format('YYYY-M-D HH:mm:ss'),
-    };
 
-    const url = `https://api.telegram.org/bot1885356896:AAHn4kXULt-i-JzSulaUq_uQQkYvz2fUaig/sendMessage?chat_id=${chat_id}&text=${JSON.stringify(
-      notif, null, "  "
-    )}`;
-
-    await axios.get(encodeURI(url));
+    req.body.forEach(async function(item) {
+      
+      const notif = {
+        OrderId: item.order_id,
+        Link: `https://www.digikala.com/product/dkp-${item.variant.product.id}`,
+        Title: `${item.variant.title}`,
+        DKPC: item.variant.id,
+        DigikalaStock: `${item.variant.stock.in_the_way + item.variant.stock.in_digikala_warehouse}`,
+        SellerStock: `${item.variant.stock.in_seller_warehouse}`,
+        ReservedStocks: `${item.variant.stock.reserved_stocks.seller + item.variant.stock.reserved_stocks.digikala}`,
+        Quantity: item.quantity,
+        SellingPrice: item.selling_price,
+        CreatedAt: moment(item.created_at).format('YYYY-M-D HH:mm:ss'),
+        cartClosedAt: moment(item.cart_closed_at).format('YYYY-M-D HH:mm:ss'),
+        CommitmentDate: moment(item.commitment_date).format('YYYY-M-D HH:mm:ss'),
+      };
+      
+      const url = `https://api.telegram.org/bot1885356896:AAHn4kXULt-i-JzSulaUq_uQQkYvz2fUaig/sendMessage?chat_id=${chat_id}&text=${JSON.stringify(
+        notif, null, "  "
+      )}`;
+      
+      await axios.get(encodeURI(url));
+    });
   } catch (error) {
     const url = `https://api.telegram.org/bot1885356896:AAHn4kXULt-i-JzSulaUq_uQQkYvz2fUaig/sendMessage?chat_id=-1002100122443&text=${JSON.stringify(
       req.body, null, "  "
+    )}`;
+    await axios.get(encodeURI(url));
+
+    url = `https://api.telegram.org/bot1885356896:AAHn4kXULt-i-JzSulaUq_uQQkYvz2fUaig/sendMessage?chat_id=-1002100122443&text=${JSON.stringify(
+      error, null, "  "
     )}`;
     await axios.get(encodeURI(url));
   }
