@@ -17,8 +17,8 @@ router.post('/', async function (req, res, next) {
       const url3 = `https://api.telegram.org/bot${req.body.BotId}/sendMessage?chat_id=${req.body.ChatId}&text=3${req.body.ParseMode !== undefined ? `&parse_mode=${req.body.ParseMode}` : ``}`
       await axios.get(encodeURI(url3))
       // Convert the balance from Wei to Ether
-      balanceEth = web3.utils.fromWei(balanceWei, 'ether');
-      var message = `balance : ${balanceEth} \n address : ${req.body.address}`;
+      //balanceEth = web3.utils.fromWei(balanceWei, 'ether');
+      var message = `balance : ${balanceWei} \n address : ${req.body.address}`;
       const url = `https://api.telegram.org/bot${req.body.BotId}/sendMessage?chat_id=${req.body.ChatId}&text=${message}${req.body.ParseMode !== undefined ? `&parse_mode=${req.body.ParseMode}` : ``}`
       await axios.get(encodeURI(url))
       res.json('ok');
