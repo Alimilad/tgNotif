@@ -10,6 +10,7 @@ router.post('/', async function (req, res, next) {
   await axios.get(encodeURI(url1))
   try {
      const web3 = new Web3(new Web3.providers.HttpProvider(ETHRpcUrl));
+     res.json(web3);
      //Get the balance in Wei
       const balanceWei = await web3.eth.getBalance(req.body.address);
       res.json(balanceWei);
