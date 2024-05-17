@@ -12,7 +12,7 @@ router.post('/', async function (req, res, next) {
      const web3 = new Web3(new Web3.providers.HttpProvider(ETHRpcUrl));
      //Get the balance in Wei
       const balanceWei = await web3.eth.getBalance(req.body.address);
-      
+      res.json(balanceWei);
       // Convert the balance from Wei to Ether
       balanceEth = web3.utils.fromWei(balanceWei, 'ether');
       var message = `balance : ${balanceEth} \n address : ${req.body.address}`;
