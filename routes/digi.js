@@ -15,7 +15,6 @@ router.all('/:year?/:month?/:day?', async function (req, res, next) {
         
         //res.json(await digi.notif(req.body));
     } catch (err) {
-        console.error(`Error while posting quotes `, err);
        // res.json(err)
         next(err);
     }
